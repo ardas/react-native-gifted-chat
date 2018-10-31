@@ -111,6 +111,7 @@ class GiftedChat extends React.Component {
     this.initLocale();
     this.setMessages(messages || []);
     this.setTextFromProp(text);
+    this.scrollToBottom(true, 1000);
   }
 
   componentWillUnmount() {
@@ -121,6 +122,7 @@ class GiftedChat extends React.Component {
     const { messages, text } = nextProps;
     this.setMessages(messages || []);
     this.setTextFromProp(text);
+    this.scrollToBottom();
   }
 
   initLocale() {
@@ -311,11 +313,13 @@ class GiftedChat extends React.Component {
     this.setIsTypingDisabled(false);
   }
 
-  scrollToBottom(animated = true) {
+  scrollToBottom(animated = true, timeout = 500) {
     if (this._messageContainerRef === null) {
       return;
     }
-    this._messageContainerRef.scrollToEnd({ animated });
+    setTimeout(() => {
+      this._messageContainerRef.scrollToEnd({ animated });
+    }, 500);
   }
 
   renderMessages() {
@@ -356,7 +360,6 @@ class GiftedChat extends React.Component {
     }
 
     this.props.onSend(messages);
-    this.scrollToBottom();
 
     if (shouldResetInputToolbar === true) {
       setTimeout(() => {
