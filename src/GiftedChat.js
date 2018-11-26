@@ -319,7 +319,7 @@ class GiftedChat extends React.Component {
     }
     setTimeout(() => {
       this._messageContainerRef.scrollToEnd({ animated });
-    }, 500);
+    }, 1000);
   }
 
   renderMessages() {
